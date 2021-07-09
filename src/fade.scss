@@ -1,0 +1,26 @@
+.fade-leave {
+  opacity: 1;
+}
+.fade-leave-active {
+  transition: opacity 3s linear;
+}
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  transition: opacity 3s linear;
+}
+.fade-enter-to {
+  opacity: 1;
+}
+
+h1 {
+  text-transform: capitalize;
+  text-align: center;
+  font-size: clamp(3rem, calc(4px + 8vw), 14rem);
+  font-weight: 500;
+}

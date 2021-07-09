@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    />
+    <link rel="stylesheet" href="/src/styles.scss">
+  </head>
+
+  <body data-barba="wrapper">
+    <div class="container" data-barba="container" data-barba-namespace="home">
+      <header>
+        <h1 class="logo">the Volkswagen</h1>
+        <nav>
+          <ul>
+            <li><a>articles</a></li>
+            <li><a>projects</a></li>
+            <li><a>thoughts</a></li>
+            <li><a>about</a></li>
+          </ul>
+        </nav>
+        <button aria-label="menu">cars menu</button>
+      </header>
+      <main>
+        <div class="main-header">
+          <button aria-label="See the project">
+            <a href="./project.html"
+              ><img src="./src/images/arrow.png" alt="" />
+              click me
+            </a>
+          </button>
+          <h1>Volkswagen Beetle</h1>
+        </div>
+        <div class="main-presentation">
+          <h2><span>creation</span><span>1938</span></h2>
+
+          <p>
+            The Volkswagen Beetle—officially the Volkswagen Type 1, informally
+            in German der Käfer (meaning "beetle"), in parts of the
+            English-speaking world the Bug.
+          </p>
+        </div>
+        <figure>
+          <img
+            src="https://images.unsplash.com/photo-1625062294644-654200e31edb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1947&q=80"
+            alt="exterieur de voiture de collection"
+            class="active-img"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1625062294717-46c4b7e83e7e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1047&q=80"
+            alt="interieur de voiture de collection"
+          />
+        </figure>
+      </main>
+    </div>
+
+    <script src="/src/index.js"></script>
+  </body>
+</html>
