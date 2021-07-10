@@ -9,10 +9,6 @@
  */
 
 import "./styles.scss";
-// import barba from "@barba/core";
-// import barbaCss from "@barba/css";
-
-// import LoadPage from "./animPage";
 import Image from "./image";
 import Transition from "./transitionPage";
 
@@ -28,7 +24,6 @@ class Index {
          new Image(document.querySelector("figure"));
       }
       new Transition();
-      // new LoadPage(document.querySelector(".container"));
     } catch (e) {
       console.error(e.message);
     }

@@ -28,12 +28,12 @@ body {
 }
 
 h2 {
-  font-size: clamp(2.450rem, calc( 12px + 5.800vw ), 11rem);
+  font-size: clamp(2.450rem, calc(12px + 5.800vw), 11rem);
   font-weight: 500;
 }
 
 :is(li, button, a, p, img[alt]) {
-  font-size: clamp(1.150rem, calc( 12px + 0.600vw ), 1.250rem);
+  font-size: clamp(1.150rem, calc(12px + 0.600vw), 1.250rem);
 }
 
 a {
@@ -62,30 +62,36 @@ ul {
 
 header {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
   text-transform: uppercase;
   margin-bottom: $block-margin;
-  .logo {
-    font-size: 1.6rem;
-    font-weight: 700;
-    flex: 0 0 36%;
-  }
+  overflow: hidden;
 
-  nav {
+  .wrap-header {
     display: flex;
-    align-items: flex-end;
-    @media(max-width: 731px) {
-      order: 3;
-      margin-top: $block-margin;
-    }
-    ul {
-      display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
 
-      li {
-        margin-right: 3vw;
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    nav {
+      display: flex;
+      align-items: flex-end;
+
+      @media(max-width: 731px) {
+        order: 3;
+        margin-top: $block-margin;
+      }
+
+      ul {
+        display: flex;
+
+        li {
+          margin-right: 3vw;
+        }
       }
     }
   }
@@ -107,37 +113,47 @@ main {
     display: flex;
     height: fit-content;
     align-items: center;
+
     img {
       width: 1.5rem;
       margin-right: 1.5rem;
     }
+
     @media(max-width: 635px) {
       order: 1;
       margin-top: $block-margin;
     }
   }
-  
+
   h1 {
     text-transform: capitalize;
     text-align: end;
     font-size: clamp(3rem, calc(4px + 8vw), 14rem);
     font-weight: 500;
+
+    span {
+      display: block;
+    }
   }
 }
+
 .main-presentation {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: $block-margin;
+
   h2 {
     flex: 0 0 50%;
     display: flex;
     justify-content: space-between;
+
     @media(max-width: 690px) {
       flex: 0 0 60%;
     }
   }
+
   p {
     flex: 0 0 30%;
     line-height: 20px;
@@ -146,6 +162,7 @@ main {
     @media(max-width: 950px) {
       flex: 0 0 40%;
     }
+
     @media(max-width: 690px) {
       flex: 0 0 100%;
       margin-top: $block-margin;
@@ -159,6 +176,7 @@ figure {
   height: 61%;
   overflow: hidden;
   cursor: pointer;
+
   @media(max-width: 756px) {
     height: 46vh;
   }
@@ -170,9 +188,11 @@ figure {
     object-position: center;
     height: 100%;
     opacity: 0;
+
     &:not(.active-img) {
       transform: scale(1.1) rotateZ(2deg);
     }
+
     &:nth-child(2) {
       object-position: center;
     }
@@ -180,7 +200,7 @@ figure {
 }
 
 .active-img {
-  opacity: 1!important;
+  opacity: 1 !important;
   transform: scale(1) rotateZ(0);
   transition: all 1000ms;
 }

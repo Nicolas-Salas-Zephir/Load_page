@@ -39,6 +39,10 @@ h1 {
   text-align: center;
   font-size: clamp(3rem, calc(4px + 8vw), 14rem);
   font-weight: 500;
+  overflow: hidden;
+}
+h1 span {
+  display: block;
 }
 
 * {
@@ -63,12 +67,12 @@ body {
 }
 
 h2 {
-  font-size: clamp(2.450rem, calc( 12px + 5.800vw ), 11rem);
+  font-size: clamp(2.450rem, calc(12px + 5.800vw), 11rem);
   font-weight: 500;
 }
 
 :is(li, button, a, p, img[alt]) {
-  font-size: clamp(1.150rem, calc( 12px + 0.600vw ), 1.250rem);
+  font-size: clamp(1.150rem, calc(12px + 0.600vw), 1.250rem);
 }
 
 a {
@@ -97,32 +101,34 @@ ul {
 
 header {
   position: relative;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+  overflow: hidden;
+}
+header .wrap-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  text-transform: uppercase;
-  margin-bottom: 3rem;
 }
-header .logo {
+header .wrap-header .logo {
   font-size: 1.6rem;
   font-weight: 700;
-  flex: 0 0 36%;
 }
-header nav {
+header .wrap-header nav {
   display: flex;
   align-items: flex-end;
 }
 @media (max-width: 731px) {
-  header nav {
+  header .wrap-header nav {
     order: 3;
     margin-top: 3rem;
   }
 }
-header nav ul {
+header .wrap-header nav ul {
   display: flex;
 }
-header nav ul li {
+header .wrap-header nav ul li {
   margin-right: 3vw;
 }
 
@@ -158,6 +164,9 @@ main {
   text-align: end;
   font-size: clamp(3rem, calc(4px + 8vw), 14rem);
   font-weight: 500;
+}
+.main-header h1 span {
+  display: block;
 }
 
 .main-presentation {

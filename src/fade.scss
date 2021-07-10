@@ -23,4 +23,9 @@ h1 {
   text-align: center;
   font-size: clamp(3rem, calc(4px + 8vw), 14rem);
   font-weight: 500;
+  overflow: hidden;
+
+  span {
+    display: block;
+  }
 }

@@ -5910,16 +5910,93 @@ var _gsap = _interopRequireDefault(require("gsap"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var animEnter = function animEnter(container) {
-  return _gsap.default.from(container, {
-    autoAlpha: 0,
+var animEnterHome = function animEnterHome(container) {
+  var title = container.querySelector("main h1 span");
+  var header = container.querySelector(".wrap-header");
+  var button = container.querySelector(".main-header button");
+  var h2El = container.querySelector(".main-presentation h2");
+  var paraEl = container.querySelector(".main-presentation p");
+  var images = container.querySelector("figure");
+
+  var tl = _gsap.default.timeline();
+
+  tl.set(title, {
+    autoAlpha: 1
+  }).fromTo(header, {
+    yPercent: 101,
+    rotateZ: 2
+  }, {
+    yPercent: 0,
+    rotateZ: 0,
     duration: 2,
-    clearProps: "all",
-    ease: "none"
-  });
+    clearProps: "all"
+  }, 0).fromTo(title, {
+    yPercent: 101,
+    rotateZ: 2
+  }, {
+    yPercent: 0,
+    rotateZ: 0,
+    duration: 2,
+    clearProps: "all"
+  }, 0).fromTo(button, {
+    opacity: 0
+  }, {
+    opacity: 1,
+    duration: 3,
+    clearProps: "all"
+  }, 0.2).fromTo(h2El, {
+    opacity: 0
+  }, {
+    opacity: 1,
+    duration: 3,
+    clearProps: "all"
+  }, 0.7).fromTo(paraEl, {
+    opacity: 0
+  }, {
+    opacity: 1,
+    duration: 3,
+    clearProps: "all"
+  }, 0.9).fromTo(images, {
+    clipPath: "inset(0 0% 105% 0)"
+  }, {
+    duration: 2,
+    clipPath: "inset(0 0% 0% 0)"
+  }, 0.3);
+  return tl;
 };
 
-var _default = animEnter;
+var animEnterfade = function animEnterfade(container) {
+  var title = container.querySelector("main h1 span");
+  var header = container.querySelector(".wrap-header");
+
+  var tl = _gsap.default.timeline();
+
+  tl.set(title, {
+    autoAlpha: 1
+  }).fromTo(title, {
+    yPercent: 101,
+    rotateZ: 2
+  }, {
+    yPercent: 0,
+    rotateZ: 0,
+    duration: 2,
+    clearProps: "all"
+  }, 0).fromTo(header, {
+    yPercent: 101,
+    rotateZ: 2
+  }, {
+    yPercent: 0,
+    rotateZ: 0,
+    duration: 2,
+    clearProps: "all"
+  }, 0);
+  return tl;
+};
+
+var _default = {
+  animEnterHome: animEnterHome,
+  animEnterfade: animEnterfade
+};
 exports.default = _default;
 },{"gsap":"node_modules/gsap/index.js"}],"src/animations/animLeave.js":[function(require,module,exports) {
 "use strict";
@@ -5933,7 +6010,50 @@ var _gsap = _interopRequireDefault(require("gsap"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var animLeave = function animLeave(container) {
+var animLeaveHome = function animLeaveHome(container) {
+  var btnEl = container.querySelector(".main-header button");
+  var h1El = container.querySelector(".main-header h1");
+  var h2el = container.querySelector(".main-presentation h2");
+  var pEl = container.querySelector(".main-presentation p");
+  var header = container.querySelector("header");
+  var figure = container.querySelector("figure");
+  var image = container.querySelector("figure .active-img");
+
+  var tl = _gsap.default.timeline();
+
+  tl.to(btnEl, {
+    duration: 2,
+    x: "-110%",
+    ease: "Power4.easeInOut"
+  }).to(h1El, {
+    duration: 3,
+    x: "130%",
+    ease: "Power4.easeInOut"
+  }, 0).to(h2el, {
+    duration: 3,
+    x: "-110%",
+    ease: "Power4.easeInOut"
+  }, 0).to(pEl, {
+    duration: 3,
+    x: "110%",
+    ease: "Power4.easeInOut"
+  }, 0).to(header, {
+    duration: 2,
+    y: "-200%",
+    ease: "Power4.easeInOut"
+  }, 0).to(figure, {
+    duration: 2,
+    clipPath: "inset(0 0% 105% 0)",
+    ease: "Circ.easeOut"
+  }, 0.7).to(image, {
+    duration: 2,
+    scale: 1.5,
+    ease: "Power0.easeNone"
+  }, 0);
+  return tl;
+};
+
+var animLeaveFade = function animLeaveFade(container) {
   return _gsap.default.to(container, {
     autoAlpha: 0,
     duration: 2,
@@ -5942,7 +6062,10 @@ var animLeave = function animLeave(container) {
   });
 };
 
-var _default = animLeave;
+var _default = {
+  animLeaveHome: animLeaveHome,
+  animLeaveFade: animLeaveFade
+};
 exports.default = _default;
 },{"gsap":"node_modules/gsap/index.js"}],"src/animations/index.js":[function(require,module,exports) {
 "use strict";
@@ -6000,17 +6123,42 @@ var Transition = /*#__PURE__*/function () {
     value: function initTransitionPage() {
       _core.default.init({
         transitions: [{
+          name: "home",
+          to: {
+            namespace: ["home"]
+          },
           once: function once(_ref) {
             var next = _ref.next;
-            (0, _animations.animEnter)(next.container);
+
+            _animations.animEnter.animEnterHome(next.container);
           },
           leave: function leave(_ref2) {
             var current = _ref2.current;
-            return (0, _animations.animLeave)(current.container);
+            return _animations.animLeave.animLeaveFade(current.container);
           },
           enter: function enter(_ref3) {
             var next = _ref3.next;
-            (0, _animations.animEnter)(next.container);
+
+            _animations.animEnter.animEnterHome(next.container);
+          }
+        }, {
+          name: "fade",
+          to: {
+            namespace: ["fade"]
+          },
+          once: function once(_ref4) {
+            var next = _ref4.next;
+
+            _animations.animEnter.animEnterfade(next.container);
+          },
+          leave: function leave(_ref5) {
+            var current = _ref5.current;
+            return _animations.animLeave.animLeaveHome(current.container);
+          },
+          enter: function enter(_ref6) {
+            var next = _ref6.next;
+
+            _animations.animEnter.animEnterfade(next.container);
           }
         }]
       });
@@ -6053,7 +6201,7 @@ var Index = /*#__PURE__*/function () {
           new _image.default(document.querySelector("figure"));
         }
 
-        new _transitionPage.default(); // new LoadPage(document.querySelector(".container"));
+        new _transitionPage.default();
       } catch (e) {
         console.error(e.message);
       }
@@ -6092,7 +6240,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1040" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1036" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -6269,4 +6417,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/index.js"], null)
-//# sourceMappingURL=/src.a2b27638.js.map
+//# sourceMappingURL=/src.a2b27638.js.mapp
