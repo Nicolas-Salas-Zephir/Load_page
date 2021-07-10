@@ -15,32 +15,12 @@ export default class Image {
       this.arrImage.push(a);
     });
 
-    // this.changeImage();
-    // this.classActive();
     this.evtClick();
   }
-  // changeImage() {
-  //   const tl = gsap.timeline({ delay: 2, paused: true });
-  //   tl.to(this.DOM.image1, {
-  //     duration: 1,
-  //     autoAlpha: 1,
-  //     scale: 1.1
-  //   }).to(
-  //     this.DOM.image2,
-  //     {
-  //       duration: 3,
-  //       opacity: 1,
-  //       scale: 1,
-  //       rotateZ: 0
-  //     },
-  //     "-=1"
-  //   );
-  //   tl.play(-3);
-  // }
 
   evtClick() {
-    this.arrImage.forEach((image, i) => {
-      image.addEventListener("click", (e) => {
+    this.arrImage.forEach((image) => {
+      image.addEventListener("click", () => {
         if (!this.next) {
           this.next = true;
           this.show();

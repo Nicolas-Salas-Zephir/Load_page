@@ -5799,38 +5799,18 @@ var Image = /*#__PURE__*/function () {
 
     _toConsumableArray(this.DOM.images).forEach(function (a) {
       _this.arrImage.push(a);
-    }); // this.changeImage();
-    // this.classActive();
-
+    });
 
     this.evtClick();
-  } // changeImage() {
-  //   const tl = gsap.timeline({ delay: 2, paused: true });
-  //   tl.to(this.DOM.image1, {
-  //     duration: 1,
-  //     autoAlpha: 1,
-  //     scale: 1.1
-  //   }).to(
-  //     this.DOM.image2,
-  //     {
-  //       duration: 3,
-  //       opacity: 1,
-  //       scale: 1,
-  //       rotateZ: 0
-  //     },
-  //     "-=1"
-  //   );
-  //   tl.play(-3);
-  // }
-
+  }
 
   _createClass(Image, [{
     key: "evtClick",
     value: function evtClick() {
       var _this2 = this;
 
-      this.arrImage.forEach(function (image, i) {
-        image.addEventListener("click", function (e) {
+      this.arrImage.forEach(function (image) {
+        image.addEventListener("click", function () {
           if (!_this2.next) {
             _this2.next = true;
 
@@ -5917,6 +5897,7 @@ var animEnterHome = function animEnterHome(container) {
   var h2El = container.querySelector(".main-presentation h2");
   var paraEl = container.querySelector(".main-presentation p");
   var images = container.querySelector("figure");
+  var image = container.querySelector("figure .active-img");
 
   var tl = _gsap.default.timeline();
 
@@ -5960,7 +5941,8 @@ var animEnterHome = function animEnterHome(container) {
     clipPath: "inset(0 0% 105% 0)"
   }, {
     duration: 2,
-    clipPath: "inset(0 0% 0% 0)"
+    clipPath: "inset(0 0% 0% 0)",
+    ease: "Expo.easeOut"
   }, 0.3);
   return tl;
 };
@@ -6010,6 +5992,18 @@ var _gsap = _interopRequireDefault(require("gsap"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var sizes = {
+  width: window.innerWidth,
+  height: window.innerHeight
+};
+
+var resizes = function resizes() {
+  window.addEventListener("resize", function () {
+    sizes.width = window.innerWidth;
+    sizes.height = window.innerHeight;
+  });
+};
+
 var animLeaveHome = function animLeaveHome(container) {
   var btnEl = container.querySelector(".main-header button");
   var h1El = container.querySelector(".main-header h1");
@@ -6021,36 +6015,71 @@ var animLeaveHome = function animLeaveHome(container) {
 
   var tl = _gsap.default.timeline();
 
-  tl.to(btnEl, {
-    duration: 2,
-    x: "-110%",
-    ease: "Power4.easeInOut"
-  }).to(h1El, {
-    duration: 3,
-    x: "130%",
-    ease: "Power4.easeInOut"
-  }, 0).to(h2el, {
-    duration: 3,
-    x: "-110%",
-    ease: "Power4.easeInOut"
-  }, 0).to(pEl, {
-    duration: 3,
-    x: "110%",
-    ease: "Power4.easeInOut"
-  }, 0).to(header, {
-    duration: 2,
-    y: "-200%",
-    ease: "Power4.easeInOut"
-  }, 0).to(figure, {
-    duration: 2,
-    clipPath: "inset(0 0% 105% 0)",
-    ease: "Circ.easeOut"
-  }, 0.7).to(image, {
-    duration: 2,
-    scale: 1.5,
-    ease: "Power0.easeNone"
-  }, 0);
-  return tl;
+  resizes();
+
+  if (sizes.width > 635) {
+    tl.to(btnEl, {
+      duration: 2,
+      xPercent: -110,
+      ease: "Power4.easeInOut"
+    }).to(h1El, {
+      duration: 3,
+      xPercent: 130,
+      ease: "Power4.easeInOut"
+    }, 0).to(h2el, {
+      duration: 3,
+      xPercent: -110,
+      ease: "Power4.easeInOut"
+    }, 0).to(pEl, {
+      duration: 3,
+      xPercent: 110,
+      ease: "Power4.easeInOut"
+    }, 0).to(header, {
+      duration: 2,
+      yPercent: -200,
+      ease: "Power4.easeInOut"
+    }, 0).to(figure, {
+      duration: 2,
+      clipPath: "inset(0 0% 105% 0)",
+      ease: "Circ.easeOut"
+    }, 0.7).to(image, {
+      duration: 2,
+      scale: 1.5,
+      ease: "Power0.easeNone"
+    }, 0);
+    return tl;
+  } else {
+    tl.to(btnEl, {
+      duration: 2,
+      xPercent: 110,
+      ease: "Power4.easeInOut"
+    }).to(h1El, {
+      duration: 3,
+      xPercent: -130,
+      ease: "Power4.easeInOut"
+    }, 0).to(h2el, {
+      duration: 3,
+      xPercent: -110,
+      ease: "Power4.easeInOut"
+    }, 0).to(pEl, {
+      duration: 3,
+      xPercent: 110,
+      ease: "Power4.easeInOut"
+    }, 0).to(header, {
+      duration: 2,
+      yPercent: -200,
+      ease: "Power4.easeInOut"
+    }, 0).to(figure, {
+      duration: 2,
+      clipPath: "inset(0 0% 105% 0)",
+      ease: "Circ.easeOut"
+    }, 0.7).to(image, {
+      duration: 2,
+      scale: 1.5,
+      ease: "Power0.easeNone"
+    }, 0);
+    return tl;
+  }
 };
 
 var animLeaveFade = function animLeaveFade(container) {
@@ -6197,7 +6226,7 @@ var Index = /*#__PURE__*/function () {
     key: "init",
     value: function init() {
       try {
-        if (document.location.href === "http://localhost:1053/index.html" || document.location.href === "http://localhost:1053/") {
+        if (document.location.href === "http://localhost:1035/index.html" || document.location.href === "http://localhost:1035/") {
           new _image.default(document.querySelector("figure"));
         }
 
@@ -6240,7 +6269,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1036" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "3932" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -20,7 +20,7 @@ class Index {
 
   init() {
     try {
-      if (document.location.href === "http://localhost:1053/index.html" || document.location.href === "http://localhost:1053/") {
+      if (document.location.href === "http://localhost:1035/index.html" || document.location.href === "http://localhost:1035/") {
          new Image(document.querySelector("figure"));
       }
       new Transition();

@@ -119,7 +119,7 @@ header .wrap-header nav {
   display: flex;
   align-items: flex-end;
 }
-@media (max-width: 731px) {
+@media (max-width: 560px) {
   header .wrap-header nav {
     order: 3;
     margin-top: 3rem;
